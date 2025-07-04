@@ -2,6 +2,7 @@ package se.lexicon.model;
 
 
 import javax.xml.transform.Result;
+import java.util.UUID;
 
 /**
  * This class represents a Book model with properties and methods
@@ -16,19 +17,21 @@ public class Book {
     public boolean avaliable;
 
     public Book (String title, String author){
+        this.id = generateID();
         this.title = title;
         this.author = author;
         this.avaliable = true;
     }
 
     public Book( String title, String author, String borrower){
+        this.id = generateID();
         this.title = title;
         this.author = author;
         this.avaliable = false;
     }
 
     public  void setId(String id){
-        this.id = id;
+        this.id = generateID();
     }
 
     public void setTitle( String title){
@@ -56,6 +59,9 @@ public class Book {
 
     public boolean isAvaliable(){
         return avaliable;
+    }
+    public static String generateID(){
+        return UUID.randomUUID().toString().substring(0,8);
     }
 
     public void getBookInformation(){

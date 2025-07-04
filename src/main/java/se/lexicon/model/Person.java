@@ -12,6 +12,7 @@ public class Person {
     private  String lastName;
 
     public Person(String firstName, String lastName){
+        this.id = getNextId();
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -49,13 +50,21 @@ public class Person {
     }
 
     public void loanBook(Book book){
-
-
-
+        if(book.isAvaliable()){
+            System.out.println(firstName + lastName + " successful loan :" + book.getTitle());
+            book.setAvaliable(false);
+        }else {
+            System.out.println("sorry this book has already borrowed");
+        }
     }
 
     public void returnBook(Book book){
-
+        if(!book.isAvaliable()){
+            System.out.println(firstName + lastName + " you successfully return: " + book.getTitle());
+            book.setAvaliable(true);
+        } else{
+            System.out.println("this book is already returned");
+        }
     }
 
     public String getPersinInformation(){
